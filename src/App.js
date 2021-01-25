@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Goals from './components/goals';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  state = {
+    goals: []
+  }
+
+  componentDidMount() {
+    fetch('https://unstats.un.org/SDGAPI/v1/sdg/Goal/List?includechildren=true')
+    .then(res => res.json())
+    .then((data) => {
+      this.setState({ goals: data })
+    })
+    .catch(console.log)
+  }
+
+  render() {
+    return (
+      <Goals goals={this.state.goals} />
+    )
+  }
 }
 
 export default App;
