@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// Simon Brandoné
 
 class Goals extends Component {
   constructor(props){
@@ -16,7 +17,6 @@ renderDesc () {
 
 
 renderTargets () {
-  // var descs = this.state.selectedDesc.description
   var targets = this.state.selectedGoal.targets
     var rows = targets.map((target, i) => (
       <p className="card-text" key={"target"+i}>{target.title}</p>
